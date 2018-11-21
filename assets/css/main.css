@@ -6041,6 +6041,14 @@ body.is-preload .gallery.onload-fade-in article .image img {
   background-image: url("../../images/vintage-concrete.png");
 }
 
+/* For MailChimp sign up */
+form[name=mc-embedded-subscribe-form] {
+  padding: 1em;
+}
+form[name=mc-embedded-subscribe-form] > :last-child {
+  margin-bottom: 0;
+}
+
 /* Items (transitions) */
 .items.onload-fade-in > * > .inner {
   -moz-transition: opacity 0.75s ease-in-out;

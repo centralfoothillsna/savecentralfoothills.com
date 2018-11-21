@@ -111,8 +111,8 @@
 				&:not(.color1):not(.color2):not(.color3):not(.color4):not(.color5):not(.color6):not(.color7) {
 					background-color: _palette(invert, bg-alt);
 				}
-
 				> .inner {
+
 					background-color: _palette(invert, bg);
 				}
 			}
@@ -122,4 +122,13 @@
 
         .pattern-bg {
           background-image: url("../../images/vintage-concrete.png");
+        }
+
+        /* For MailChimp sign up */
+
+	form[name="mc-embedded-subscribe-form"] {
+          padding: 1em;
+          > :last-child {
+            margin-bottom: 0;
+          }
         }
