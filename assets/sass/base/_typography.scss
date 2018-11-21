@@ -60,6 +60,7 @@
 		margin: 0 0 _size(element-margin) 0;
 
 		&.major {
+		        color: _palette(accent);
 			font-size: 1.25rem;
 		}
 	}

@@ -168,6 +168,7 @@ p {
   margin: 0 0 2rem 0;
 }
 p.major {
+  color: #47D3E5;
   font-size: 1.25rem;
 }
 
@@ -3097,13 +3098,6 @@ body.is-preload .banner.onload-image-fade-in .image img {
   -ms-object-position: left;
   object-position: left;
 }
-.banner.style2.image-position-right .image img {
-  -moz-object-position: right;
-  -webkit-object-position: right;
-  -ms-object-position: right;
-  object-position: right;
-}
-
 /* Banner (style3) */
 .banner.style3 {
   padding: 7rem 7rem 5rem 7rem;

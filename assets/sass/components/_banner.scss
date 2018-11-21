@@ -526,9 +526,10 @@
 				&.image-position-right {
 					.image {
 						img {
-							@include vendor('object-position', 'right');
+							// @include vendor('object-position', 'right');
 						}
 					}
+
 				}
 
 	}
