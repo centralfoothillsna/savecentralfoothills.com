@@ -38,7 +38,8 @@
 
 // Font.
 	$font: (
-		family:				('Source Sans Pro', Helvetica, sans-serif),
+		family:				('Bitter', Helvetica, sans-serif),
+		family-copy:			('Work Sans', Times, serif),
 		family-fixed:		('Courier New', monospace),
 		weight:				300,
 		weight-bold:		400,
@@ -55,8 +56,8 @@
 		color5:				#7794ce,
 		color6:				#64abb4,
 		color7:				#6ba78c,
-
-		bg:					#ffffff,
+		color8:                         #D5D5CB,
+		bg:				#ffffff,
 		bg-alt:				#eeeeee,
 		fg:					#000000,
 		fg-bold:			#000000,

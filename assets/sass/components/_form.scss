@@ -222,8 +222,8 @@
 		input[type="url"],
 		select,
 		textarea {
+                        background-color: _palette(color8);
 			border-color: _palette($p, border);
-
 			&:focus {
 				border-color: _palette($p, accent);
 				box-shadow: 0 0 0 _size(border-width) _palette($p, accent);

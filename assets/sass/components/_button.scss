@@ -17,6 +17,7 @@
 			'box-shadow #{_duration(transition)} ease-in-out',
 			'color #{_duration(transition)} ease-in-out'
 		));
+                background-color: _palette(color8);
 		border: 0;
 		cursor: pointer;
 		display: inline-block;
