@@ -126,9 +126,19 @@
 
         /* For MailChimp sign up */
 
+        #mc_embed_signup {
+          opacity: 0.75;
+        }
 	form[name="mc-embedded-subscribe-form"] {
+	  font-family: _font(family-copy);
           padding: 1em;
-          > :last-child {
-            margin-bottom: 0;
+          .indicates-required {
+            text-align: right;
+          }
+          .mc-field-group {
+            padding-bottom: 1em;
+            &.last-group {
+              margin-bottom: 2em;
+            }
           }
         }

@@ -195,6 +195,9 @@ h2 {
 h3 {
   font-size: 1.5rem;
 }
+h3.accent1 {
+  color: #B24216;
+}
 
 h4 {
   font-size: 1.1rem;
@@ -1735,7 +1738,7 @@ button,
 .button {
   background-color: transparent;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
-  color: #000000 !important;
+  color: #B24216 !important;
 }
 input[type=submit]:hover,
 input[type=reset]:hover,
@@ -2161,12 +2164,13 @@ a.icon.style2:active:before {
 
 /* List */
 ol {
-  list-style: decimal;
+  list-style: none;
   margin: 0 0 2rem 0;
   padding-left: 1.25rem;
 }
 ol li {
   padding-left: 0.25rem;
+  list-style-position: inside;
 }
 
 ul {
@@ -5280,7 +5284,7 @@ body.is-preload .gallery.onload-fade-in article .image img {
 .gallery.style1 .button {
   background-color: transparent;
   box-shadow: inset 0 0 0 1px white;
-  color: #ffffff !important;
+  color: #47D3E5 !important;
 }
 .gallery.style1 input[type=submit]:hover,
 .gallery.style1 input[type=reset]:hover,
@@ -5538,7 +5542,7 @@ body.is-preload .gallery.onload-fade-in article .image img {
 .gallery.style2 .button {
   background-color: transparent;
   box-shadow: inset 0 0 0 1px white;
-  color: #ffffff !important;
+  color: #47D3E5 !important;
 }
 .gallery.style2 input[type=submit]:hover,
 .gallery.style2 input[type=reset]:hover,
@@ -6042,11 +6046,22 @@ body.is-preload .gallery.onload-fade-in article .image img {
 }
 
 /* For MailChimp sign up */
+#mc_embed_signup {
+  opacity: 0.75;
+}
+
 form[name=mc-embedded-subscribe-form] {
+  font-family: "Work Sans", Times, serif;
   padding: 1em;
 }
-form[name=mc-embedded-subscribe-form] > :last-child {
-  margin-bottom: 0;
+form[name=mc-embedded-subscribe-form] .indicates-required {
+  text-align: right;
+}
+form[name=mc-embedded-subscribe-form] .mc-field-group {
+  padding-bottom: 1em;
+}
+form[name=mc-embedded-subscribe-form] .mc-field-group.last-group {
+  margin-bottom: 2em;
 }
 
 /* Items (transitions) */
@@ -6825,7 +6840,7 @@ body.is-preload .items.onload-fade-in > * > .inner {
 #wrapper > .invert .button {
   background-color: transparent;
   box-shadow: inset 0 0 0 1px white;
-  color: #ffffff !important;
+  color: #47D3E5 !important;
 }
 #wrapper > .invert input[type=submit]:hover,
 #wrapper > .invert input[type=reset]:hover,

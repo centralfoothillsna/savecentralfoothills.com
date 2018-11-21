@@ -88,6 +88,9 @@
 
 	h3 {
 		font-size: 1.5rem;
+                &.accent1 {
+                  color: _palette(accent);
+                }
 	}
 
 	h4 {

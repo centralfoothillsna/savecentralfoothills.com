@@ -1,0 +1,20 @@
+{
+  "name": "SaveCentralFoothills",
+  "version": "0.0.1",
+  "description": "Dev site for SaveCentralFoothils",
+  "main": "bs-config.js",
+  "dependencies": {
+    "browser-sync": "^2.26.3",
+    "gulp": "^3.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/savecentralfoothills/website.git"
+  },
+  "scripts": {
+    "start": "browser-sync -c bs-config.js"
+  },
+  "author": "Mike Wabst",
+  "license": "ISC",
+  "homepage": "http://dev.savecentralfoothills.com"
+}
