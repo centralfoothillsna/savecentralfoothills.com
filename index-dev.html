@@ -221,11 +221,13 @@
               if (!contentObj.paragraph.elements[0].hasOwnProperty('textRun')) {
                 return false
               }
-              var isSameSection = (!contentObj.paragraph.elements[0].textRun.content.match(sectionMatch) && activeSection === sectionIndex)
+              var isSameSection = activeSection === sectionIndex
+              var isSectionMarker = Array.isArray(contentObj.paragraph.elements[0].textRun.content.match(sectionMatch))
               activeSection = typeof(activeSection) !== 'number' ? 0 : activeSection
               try {
-                if (!isSameSection) {
+                if (!isSameSection && isSectionMarker) {
                   activeSection = sectionIndex
+                  return false
                 } else {
                   sectionContents += '<p>' + contentObj.paragraph.elements[0].textRun.content + '</p>'
                 }
