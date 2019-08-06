@@ -209,7 +209,6 @@
         }).then(function(response) {
           var contents = response.result.body.content
           var sections = ['overview', 'development', 'reasons', 'community']
-          var sectionComplete = false
           var activeSection
           sections.forEach(function (sectionName, sectionIndex) {
             var sectionEle = document.getElementById(sectionName)
@@ -218,7 +217,7 @@
             contents.forEach(function (contentObj) {
               activeSection = typeof(activeSection) !== 'number' ? 0 : activeSection
               var isNewSection = (contentObj.paragraph.elements.textRun.content.match(sectionMatch) && activeSection !== sectionIndex)
-              if (!contentObj.hasOwnProperty('paragraph') && !sectionComplete) {
+              if (!contentObj.hasOwnProperty('paragraph')) {
                 return false
               }
               try {
