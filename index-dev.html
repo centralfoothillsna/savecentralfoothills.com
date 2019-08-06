@@ -226,6 +226,7 @@
               try {
                 if (isNewSection) {
                   activeSection = sectionIndex
+                  sectionContents = ''
                 } else {
                   sectionContents += '<p>' + contentObj.paragraph.elements[0].textRun.content + '</p>'
                 }
