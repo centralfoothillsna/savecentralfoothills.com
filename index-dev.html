@@ -218,6 +218,9 @@
               if (!contentObj.hasOwnProperty('paragraph')) {
                 return false
               }
+              if (!contentObj.paragraph.elements.hasOwnProperty('textRun')) {
+                return false
+              }
               var isNewSection = (contentObj.paragraph.elements.textRun.content.match(sectionMatch) && activeSection !== sectionIndex)
               activeSection = typeof(activeSection) !== 'number' ? 0 : activeSection
               try {
