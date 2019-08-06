@@ -209,7 +209,7 @@
         }).then(function(response) {
           var contents = response.result.body.content
           var sections = ['overview', 'development', 'reasons', 'community']
-          var activeSection
+          var activeSection = 0
           sections.forEach(function (sectionName, sectionIndex) {
             var sectionEle = document.getElementById(sectionName).querySelector('.inner')
             var sectionContents = ''
