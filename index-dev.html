@@ -218,7 +218,7 @@
               if (!contentObj.hasOwnProperty('paragraph')) {
                 return false
               }
-              if (!contentObj.paragraph.elements.hasOwnProperty('textRun')) {
+              if (!contentObj.paragraph.elements[0].hasOwnProperty('textRun')) {
                 return false
               }
               var isNewSection = (contentObj.paragraph.elements.textRun.content.match(sectionMatch) && activeSection !== sectionIndex)
