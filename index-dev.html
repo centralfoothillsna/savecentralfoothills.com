@@ -211,7 +211,7 @@
           var sections = ['overview', 'development', 'reasons', 'community']
           var activeSection
           sections.forEach(function (sectionName, sectionIndex) {
-            var sectionEle = document.getElementById(sectionName)
+            var sectionEle = document.getElementById(sectionName).querySelector('.inner')
             var sectionContents = ''
             var sectionMatch = /^{#/g
             contents.forEach(function (contentObj) {
@@ -233,7 +233,7 @@
                 console.log(e)
               }
             })
-            sectionEle.insertAdjacentHTML(sectionContents)
+            sectionEle.insertAdjacentHTML('beforeend', sectionContents)
           })
         },function(response) {
           console.log('Error: ' + response.result.error.message);
