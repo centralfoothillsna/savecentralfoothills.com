@@ -240,8 +240,9 @@
                 console.log(e)
               }
             })
-            console.log('appending to', sectionParent, sectionEle, sectionContents)
             sectionEle.insertAdjacentHTML('beforeend', sectionContents)
+            sectionContents = ''
+            console.log('appending to', sectionParent, sectionEle, sectionContents)
           })
         },function(response) {
           console.log('Error: ' + response.result.error.message);
