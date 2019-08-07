@@ -223,11 +223,13 @@
                 return false
               }
               var isSectionMarker = Array.isArray(contentObj.paragraph.elements[0].textRun.content.match(sectionMatch))
+              var isSameIndex = (activeSection === sectionIndex)
               try {
                 if (isSectionMarker) {
+                  activeSection = sectionIndex
                   return false
                 }
-                if (contentAdded.indexOf(contentIndex) === -1) {
+                if (isSameIndex) {
                   contentAdded.push(contentIndex)
                   sectionContents += '<p>' + contentObj.paragraph.elements[0].textRun.content + '</p>'
                 }
