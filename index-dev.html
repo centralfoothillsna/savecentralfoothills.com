@@ -231,7 +231,7 @@
                   return false
                 }
                 if (isSameSection && contentAdded.indexOf(contentIndex) === -1 && !isSectionMarker) {
-                  contentAdded.push(contentIndex)
+                  contentAdded.push(sectionName + '-' + contentIndex)
                   sectionContents += '<p>' + contentObj.paragraph.elements[0].textRun.content + '</p>'
                 }
               } catch (e) {
