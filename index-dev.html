@@ -239,6 +239,7 @@
             sectionContents = ''
             console.log('appending to', sectionParent, sectionEle, sectionContents)
             contents = contents.slice(contentAdded.slice(-1), contents.length)
+            contentAdded = []
           })
         },function(response) {
           console.log('Error: ' + response.result.error.message);
