@@ -226,7 +226,9 @@
               var isSameIndex = (activeSection === sectionIndex)
               try {
                 if (isSectionMarker) {
-                  activeSection++
+                  if (contentAdded.length) {
+                    activeSection++
+                  }
                   return false
                 }
                 if (isSameIndex) {
