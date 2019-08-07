@@ -207,43 +207,36 @@
           documentId: '1YBrJLHdxGGIiKHY0kmSWYYeeIo1kgqw8tKxb1G18t7s'
         }).then(function(response) {
           var contents = response.result.body.content
-          var sections = ['overview', 'development', 'reasons', 'community']
+          var sections = [{name:'overview', element: '', markerIndex: ''}, {name:'development', element: '', markerIndex: ''}, {name:'reasons', element: '', markerIndex: ''}, {name:'community', element: '', markerIndex: ''}]
           var activeSection = 0
-          var contentAdded = []
           sections.forEach(function (sectionName, sectionIndex) {
+            sectionName = secionName['name']
             var sectionParent = document.getElementById(sectionName)
             var sectionEle = sectionParent.querySelector('.inner')
             var sectionContents = ''
             var sectionMatch = /^{#/g
-            contents.forEach(function (contentObj, contentIndex) {
-              if (!contentObj.hasOwnProperty('paragraph')) {
-                return false
-              }
-              if (!contentObj.paragraph.elements[0].hasOwnProperty('textRun')) {
-                return false
-              }
-              var isSectionMarker = Array.isArray(contentObj.paragraph.elements[0].textRun.content.match(sectionMatch))
-              var isSameIndex = (activeSection === sectionIndex)
-              try {
-                if (isSectionMarker) {
-                  if (contentAdded.length) {
-                    activeSection++
+            function checkContent (contentObj, contentIndex) {
+              if (contentObj.hasOwnProperty('paragraph')) {
+                if (contentObj.paragraph.elements[0].hasOwnProperty('textRun')) {
+                  var isSectionMarker = Array.isArray(contentObj.paragraph.elements[0].textRun.content.match(sectionMatch))
+                  try {
+                    if (isSectionMarker) {
+                      sections[activeSection].markerIndex = contentIndex
+                      sections[activeSection].element = sectionEle
+                    }
+                  } catch (e) {
+                    console.log(e)
                   }
-                  return false
                 }
-                if (isSameIndex) {
-                  contentAdded.push(contentIndex)
-                  sectionContents += '<p>' + contentObj.paragraph.elements[0].textRun.content + '</p>'
-                }
-              } catch (e) {
-                console.log(e)
               }
-            })
-            sectionEle.insertAdjacentHTML('beforeend', sectionContents)
-            sectionContents = ''
-            console.log('appending to', sectionParent, sectionEle, sectionContents)
-            contents = contents.slice(contentAdded.slice(-1), contents.length)
-            contentAdded = []
+            }
+            contents.forEach(checkContent)
+            console.log('sections', sections
+            //sectionEle.insertAdjacentHTML('beforeend', sectionContents)
+            // sectionContents = ''
+            // console.log('appending to', sectionParent, sectionEle, sectionContents)
+            // contents = contents.slice(contentAdded.slice(-1), contents.length)
+            // contentAdded = []
           })
         },function(response) {
           console.log('Error: ' + response.result.error.message);
