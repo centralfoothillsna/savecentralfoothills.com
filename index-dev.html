@@ -186,8 +186,7 @@
       <script type="text/javascript">
         var CLIENT_ID = '69381099923-dt5eq5kbkh76cfauppfqp597rh85vic6.apps.googleusercontent.com'
         var API_KEY = 'AIzaSyD10kungl4WGFe9oEdUZuKN19ANG1pdou4';
-        var DISCOVERY_DOCS = [
-          'https://docs.googleapis.com/$discovery/rest?version=v1&key=AIzaSyD10kungl4WGFe9oEdUZuKN19ANG1pdou4'];
+        var DISCOVERY_DOCS = ['https://docs.googleapis.com/$discovery/rest?version=v1&key=AIzaSyD10kungl4WGFe9oEdUZuKN19ANG1pdou4'];
         var SCOPES = "https://www.googleapis.com/auth/documents.readonly";
 
         function handleClientLoad() {
@@ -196,10 +195,10 @@
 
         function initClient() {
           gapi.client.init({
-          apiKey: API_KEY,
-          clientId: CLIENT_ID,
-          discoveryDocs: DISCOVERY_DOCS,
-          scope: SCOPES
+            apiKey: API_KEY,
+            clientId: CLIENT_ID,
+            discoveryDocs: DISCOVERY_DOCS,
+            scope: SCOPES
           }).then(getSectionContents);
         }
 
@@ -214,6 +213,7 @@
             var sectionEle = document.getElementById(sectionName).querySelector('.inner')
             var sectionContents = ''
             var sectionMatch = /^{#/g
+            var sectionComplete = false
             contents.forEach(function (contentObj) {
               if (!contentObj.hasOwnProperty('paragraph')) {
                 return false
@@ -225,12 +225,17 @@
               var isSectionMarker = Array.isArray(contentObj.paragraph.elements[0].textRun.content.match(sectionMatch))
               activeSection = typeof(activeSection) !== 'number' ? 0 : activeSection
               try {
+                if (sectionComplete) {
+                  return false
+                }
                 if (isSectionMarker) {
                   activeSection = sectionIndex
                   return false
                 }
                 if (isSameSection) {
                   sectionContents += '<p>' + contentObj.paragraph.elements[0].textRun.content + '</p>'
+                } else {
+                  sectionComplete = true
                 }
               } catch (e) {
                 console.log(e)
