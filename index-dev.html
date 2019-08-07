@@ -231,7 +231,7 @@
                     return false
                   }
                 }
-                if (isSameSection && contentAdded.indexOf(contentIndex) === -1) {
+                if (isSameSection && contentAdded.indexOf(contentIndex) === -1 && !isSectionMarker) {
                   contentAdded.push(contentIndex)
                   sectionContents += '<p>' + contentObj.paragraph.elements[0].textRun.content + '</p>'
                 }
