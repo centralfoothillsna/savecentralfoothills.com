@@ -208,34 +208,32 @@
         }).then(function(response) {
           var contents = response.result.body.content
           var sections = ['overview', 'development', 'reasons', 'community']
+          // 0, 1, 2, 3
           var activeSection = 0
           sections.forEach(function (sectionName, sectionIndex) {
             var sectionEle = document.getElementById(sectionName).querySelector('.inner')
             var sectionContents = ''
             var sectionMatch = /^{#/g
-            var sectionComplete = false
-            contents.forEach(function (contentObj) {
+            var contentAdded = []
+            contents.forEach(function (contentObj, contentIndex) {
               if (!contentObj.hasOwnProperty('paragraph')) {
                 return false
               }
               if (!contentObj.paragraph.elements[0].hasOwnProperty('textRun')) {
                 return false
               }
-              var isSameSection = sectionIndex === activeSection
+              var isSameSection = (sectionIndex === activeSection)
               var isSectionMarker = Array.isArray(contentObj.paragraph.elements[0].textRun.content.match(sectionMatch))
-              activeSection = typeof(activeSection) !== 'number' ? 0 : activeSection
               try {
-                if (sectionComplete) {
-                  return false
-                }
                 if (isSectionMarker) {
-                  activeSection = sectionIndex
-                  return false
+                  if (sectionIndex > 0) {
+                    activeSection++
+                    return false
+                  }
                 }
-                if (isSameSection) {
+                if (isSameSection && contentAdded.indexOf(contentIndex) === -1) {
+                  contentAdded.push(contentIndex)
                   sectionContents += '<p>' + contentObj.paragraph.elements[0].textRun.content + '</p>'
-                } else {
-                  sectionComplete = true
                 }
               } catch (e) {
                 console.log(e)
