@@ -211,7 +211,8 @@
           // 0, 1, 2, 3
           var activeSection = 0
           sections.forEach(function (sectionName, sectionIndex) {
-            var sectionEle = document.getElementById(sectionName).querySelector('.inner')
+            var sectionParent = document.getElementById(sectionName)
+            var sectionEle = sectionParent.querySelector('.inner')
             var sectionContents = ''
             var sectionMatch = /^{#/g
             var contentAdded = []
@@ -239,7 +240,7 @@
                 console.log(e)
               }
             })
-            console.log('appending to', sectionEle, sectionContents)
+            console.log('appending to', sectionParent, sectionEle, sectionContents)
             sectionEle.insertAdjacentHTML('beforeend', sectionContents)
           })
         },function(response) {
