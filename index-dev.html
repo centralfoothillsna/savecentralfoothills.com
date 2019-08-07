@@ -208,14 +208,13 @@
         }).then(function(response) {
           var contents = response.result.body.content
           var sections = ['overview', 'development', 'reasons', 'community']
-          // 0, 1, 2, 3
           var activeSection = 0
+          var contentAdded = []
           sections.forEach(function (sectionName, sectionIndex) {
             var sectionParent = document.getElementById(sectionName)
             var sectionEle = sectionParent.querySelector('.inner')
             var sectionContents = ''
             var sectionMatch = /^{#/g
-            var contentAdded = []
             contents.forEach(function (contentObj, contentIndex) {
               if (!contentObj.hasOwnProperty('paragraph')) {
                 return false
