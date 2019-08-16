@@ -261,9 +261,12 @@
             }
           })
         },function(response) {
-            console.log('Error: ' + response.result.error.message);
-            var defaultContent = sectionEle.querySelector('noscript').innerHTML
-            sectionEle.insertAdjacentHTML('beforeend', defaultContent)
+          // Fallback to noscript content
+          document.querySelectorAll('.inner noscript').forEach(function (noscriptEle) {
+            var noscriptContent = noscriptEle.innerHTML
+            noscriptEle.parentElement.insertAdjacentHTML('beforeend', noscriptContent)
+          })
+          console.log('Error: ' + response.result.error.message);
           });
         }
       </script>
