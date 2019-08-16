@@ -217,6 +217,7 @@
           gapi.client.docs.documents.get({
           documentId: '1YBrJLHdxGGIiKHY0kmSWYYeeIo1kgqw8tKxb1G18t7s'
         }).then(function(response) {
+          var parser = new DOMParser()
           var contents = response.result.body.content
           var sections = ['overview', 'development', 'reasons', 'community']
           var activeSection = 0
@@ -257,7 +258,9 @@
               sectionContents = ''
             } else {
               var defaultContent = sectionEle.querySelector('noscript').innerHTML
+              var parsedContent = parser.parseFromString(defaultContent, 'text/xml')
               sectionEle.insertAdjacentHTML('beforeend', defaultContent)
+              console.log('parsedHTML', parsedContent)
             }
           })
         },function(response) {
