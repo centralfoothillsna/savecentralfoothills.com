@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link href="//fonts.googleapis.com/css?family=Bitter|Work+Sans" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/main.css?ver=1" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
   </head>
   <body class="is-preload">
@@ -93,7 +93,8 @@
         <!-- Four -->
           <section class="wrapper style2 align-center js-section" id="community">
             <div class="inner">
-              <h2>What you can do</h2>
+              <noscript>
+                <h2>What you can do</h2>
                 <p>
                 <ul>
                   <h3 class="accent1">Sign the petition</h3>
@@ -119,7 +120,6 @@
                   </li>
                 </ul>
                 </p>
-              <noscript>
               </noscript>
             </div>
           </section>
@@ -261,7 +261,9 @@
             }
           })
         },function(response) {
-          console.log('Error: ' + response.result.error.message);
+            console.log('Error: ' + response.result.error.message);
+            var defaultContent = sectionEle.querySelector('noscript').innerHTML
+            sectionEle.insertAdjacentHTML('beforeend', defaultContent)
           });
         }
       </script>
