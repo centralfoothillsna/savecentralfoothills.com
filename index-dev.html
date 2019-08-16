@@ -94,23 +94,32 @@
           <section class="wrapper style2 align-center js-section" id="community">
             <div class="inner">
               <h2>What you can do</h2>
-              <noscript>
-                <p>It doesn't have to be overwhelming to get the facts straight and start a discussion on this, here are some ideas:
+                <p>
                 <ul>
+                  <h3 class="accent1">Sign the petition</h3>
+                  <li class="focus-accent">
+                    <p class="align-center">
+                    <strong>Add your name to our petition and tell the City of Boise to deny this development!</strong>
+                    </p>
+                    <p class="align-center">
+                      <a href="http://chng.it/kvTRmnDz5v" class="big-red-petition-button">Sign the Petition</a>
+                    </p>
+                  </li>
                   <li>
                     <h3 class="accent1">Take a hike</h3>
-                    <p class="align-center">Take a selfie while you're up there and hash tag #savecentralfoothills to help raise awareness</p>
+                    <p class="align-center">Take a beautiful foothills landscape shot or selfie and share with the hashtag <a target="blank" href="https://www.instagram.com/explore/tags/savecentralfoothills/">#savecentralfoothills</a> to help spread awareness.</p>
+                  </li>
+                  <li>
+                    <h3 class="accent1">Attend Planning &amp; Zoning Meeting</h3>
+                    <p class="align-center">Downtown Boise at City Hall, second floor...on September 16th, 2019 at 6pm.</p>
                   </li>
                   <li>
                     <h3 class="accent1">Talk to your neighbors</h3>
                     <p>Ask someone on the trail about the development or bring it up to neighbors.</p>
                   </li>
-                  <li>
-                    <h3 class="accent1">Sign up for the mailing list</h3>
-                    <p>Don't fret, your inbox will survive. Updates come out as we receive them (1-3x per month). This is vital if you plan on attending a Planning &amp; Zoning hearing to get reminders and latest updates.</p>
-                  </li>
                 </ul>
                 </p>
+              <noscript>
               </noscript>
             </div>
           </section>
@@ -119,6 +128,7 @@
             <!-- spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in -->
             <div class="inner medium">
               <h2>Staying Informed</h2>
+              <p class="align-center">After <a href="http://chng.it/kvTRmnDz5v">signing the petition</a>, sign up for the Central Foothills Neighborhood Mailing List for more neighborhood updates:</p>
               <!-- Begin Mailchimp Signup Form -->
               <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
               <style type="text/css">
@@ -151,7 +161,6 @@
                   </div>
               </form>
               </div>
-              <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
               <!--End mc_embed_signup-->
             </div>
             <div class="image">
@@ -183,6 +192,8 @@
       <script src="assets/js/breakpoints.min.js"></script>
       <script src="assets/js/util.js"></script>
       <script src="assets/js/main.js"></script>
+      <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+      <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
       <script type="text/javascript">
         var CLIENT_ID = '69381099923-dt5eq5kbkh76cfauppfqp597rh85vic6.apps.googleusercontent.com'
         var API_KEY = 'AIzaSyD10kungl4WGFe9oEdUZuKN19ANG1pdou4';
@@ -207,36 +218,47 @@
           documentId: '1YBrJLHdxGGIiKHY0kmSWYYeeIo1kgqw8tKxb1G18t7s'
         }).then(function(response) {
           var contents = response.result.body.content
-          var sections = [{name:'overview', element: '', markerIndex: ''}, {name:'development', element: '', markerIndex: ''}, {name:'reasons', element: '', markerIndex: ''}, {name:'community', element: '', markerIndex: ''}]
+          var sections = ['overview', 'development', 'reasons', 'community']
           var activeSection = 0
           sections.forEach(function (sectionName, sectionIndex) {
-            sectionName = sectionName['name']
             var sectionParent = document.getElementById(sectionName)
             var sectionEle = sectionParent.querySelector('.inner')
             var sectionContents = ''
             var sectionMatch = /^{#/g
-            function checkContent (contentObj, contentIndex) {
-              if (contentObj.hasOwnProperty('paragraph')) {
-                if (contentObj.paragraph.elements[0].hasOwnProperty('textRun')) {
-                  var isSectionMarker = Array.isArray(contentObj.paragraph.elements[0].textRun.content.match(sectionMatch))
-                  try {
-                    if (isSectionMarker) {
-                      sections[activeSection].markerIndex = contentIndex
-                      sections[activeSection].element = sectionEle
-                    }
-                  } catch (e) {
-                    console.log(e)
+            var sectionsAdded = []
+            var sectionHasData = false
+            contents.forEach(function (contentObj, contentIndex) {
+              if (!contentObj.hasOwnProperty('paragraph')) {
+                return false
+              }
+              if (!contentObj.paragraph.elements[0].hasOwnProperty('textRun')) {
+                return false
+              }
+              var isSectionMarker = Array.isArray(contentObj.paragraph.elements[0].textRun.content.match(sectionMatch))
+              var isSameIndex = (activeSection === sectionIndex)
+              try {
+                if (isSectionMarker) {
+                  if (sectionsAdded.length) {
+                    // Do not increment to next section until done with first section
+                    sectionsAdded.push(sectionName)
+                    sectionHasData = true
+                    activeSection++
                   }
                 }
+                if (isSameIndex) {
+                  sectionContents += '<p>' + contentObj.paragraph.elements[0].textRun.content + '</p>'
+                }
+              } catch (e) {
+                console.log(e)
               }
+            })
+            if (sectionHasData) {
+              sectionEle.insertAdjacentHTML('beforeend', sectionContents)
+              sectionContents = ''
+            } else {
+              var defaultContent = sectionEle.querySelector('noscript').innerHTML
+              sectionEle.insertAdjacentHTML('beforeend', defaultContent)
             }
-            contents.forEach(checkContent)
-            console.log('sections', sections)
-            //sectionEle.insertAdjacentHTML('beforeend', sectionContents)
-            // sectionContents = ''
-            // console.log('appending to', sectionParent, sectionEle, sectionContents)
-            // contents = contents.slice(contentAdded.slice(-1), contents.length)
-            // contentAdded = []
           })
         },function(response) {
           console.log('Error: ' + response.result.error.message);

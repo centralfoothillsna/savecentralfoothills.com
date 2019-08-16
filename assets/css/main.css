@@ -7081,5 +7081,27 @@ body.is-preload .items.onload-fade-in > * > .inner {
 #wrapper.divided > .invert:first-child {
   box-shadow: none !important;
 }
-
+.big-red-petition-button,
+.big-red-petition-button:hover,
+.big-red-petition-button:visited {
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 1rem;
+  padding: 12px 18px;
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 1em;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #ec2c22;
+  width: 15em;
+  font-family: Change Calibre,"Helvetica Neue",Helvetica,Arial,Tahoma,sans-serif !important;
+  border-radius: 5px;
+}
+.focus-accent {
+    background: rgba(100, 202, 129, 0.10);
+    padding: 0.5em 0 0;
+    border-radius: 5px;
+}
 /*# sourceMappingURL=main.css.map */
