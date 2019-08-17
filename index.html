@@ -17,10 +17,10 @@
               <h1>Save Central Foothills</h1>
               <p class="major accent1">Boise, ID</p>
               <div class="inner">
-                <noscript>
+                <!-- <noscript> -->
                   <p>The protection of open space and thoughtful, measured development in our precious Boise foothills is an issue that concerns many Boise residents. People come from far and wide to access these foothills.</p>
                   <p>While responsible development is welcomed, many of your neighbors have come together to save an at-risk area in Quail Hollow from poorly designed development. Our campaign, "Save Central Foothills", needs your help to save important open spaces in the area.</p>
-                </noscript>
+                <!-- </noscript> -->
               </div>
               <ul class="actions stacked">
                 <li><a href="/#development" class="button big wide smooth-scroll-middle pull-right">Proposed Development <span class="fa fa-arrow-down"></span></a></li>
@@ -35,10 +35,10 @@
             <div class="content">
               <h2>Proposed Development</h2>
               <div class="inner">
-                <noscript>
+                <!-- <noscript> -->
                   <p>The developer, Colin Connell, and KM Engineers, his contractor, held a meeting on October 9th, 2018 with neighbors to discuss a development proposal/extension of the Eyrie Canyon neighborhood.  The proposal includes two adjacent streets from Villa Ridge Way that would enter a 12-acre Open Space lot designated as unbuildable in 2008.  The development would climb southwest onto a 62 acre property often called ‘Bedard’, owned by Kipp Bedard.  Six homes are planned on the unbuildable lot, and 30 homes are planned on the Bedard parcel. A stub street shows intent for future development of the Bedard parcel, so more foothills development is quite likely.  While the City of Boise has yet to receive an application, we expect one to be submitted soon.</p>
                   <p>Neighbors in attendance at the October 9th meeting were united in opposition, along with Central Foothills Neighborhood Association.</p>
-                </noscript>
+                <!-- </noscript> -->
               </div>
               <ul class="actions stacked">
                 <li><a href="#reasons" class="button big wide smooth-scroll-top pull-left">What are the issues? <span class="fa fa-arrow-down"></span></a></li>
@@ -53,7 +53,7 @@
             <div class="content">
               <h2>What are the issues?</h2>
               <div class="inner">
-                <noscript>
+                <!-- <noscript> -->
                   <ol>
                     <li>
                       <h3 class="accent1">Fire Danger/Egress</h3>
@@ -80,7 +80,7 @@
                       <p>Some homeowners said the developer mislead them relative to the unbuildable lot. The developer has admitted that the 12 acre parcel is “too steep to build” when trying to sell adjacent homes to potential buyers.  This was research they used before purchasing their homes.</p>
                     </li>
                   </ol>
-                </noscript>
+                <!-- </noscript> -->
               </div>
               <ul class="actions stacked">
                 <li><a href="#community" class="button">What you can do <span class="fa fa-arrow-down"></span></a></li>
@@ -93,7 +93,7 @@
         <!-- Four -->
           <section class="wrapper style2 align-center js-section" id="community">
             <div class="inner">
-              <noscript>
+              <!-- <noscript> -->
                 <h2>What you can do</h2>
                 <p>
                 <ul>
@@ -120,7 +120,7 @@
                   </li>
                 </ul>
                 </p>
-              </noscript>
+              <!-- </noscript> -->
             </div>
           </section>
         <!-- Five -->
@@ -210,14 +210,13 @@
             clientId: CLIENT_ID,
             discoveryDocs: DISCOVERY_DOCS,
             scope: SCOPES
-          }).then(getSectionContents);
+          })/*.then(getSectionContents); */
         }
 
         function getSectionContents() {
           gapi.client.docs.documents.get({
           documentId: '1YBrJLHdxGGIiKHY0kmSWYYeeIo1kgqw8tKxb1G18t7s'
         }).then(function(response) {
-          var parser = new DOMParser()
           var contents = response.result.body.content
           var sections = ['overview', 'development', 'reasons', 'community']
           var activeSection = 0
@@ -257,17 +256,20 @@
               sectionEle.insertAdjacentHTML('beforeend', sectionContents)
               sectionContents = ''
             } else {
-              var defaultContent = sectionEle.querySelector('noscript').innerHTML
-              var parsedContent = parser.parseFromString(defaultContent, 'text/xml')
-              sectionEle.insertAdjacentHTML('beforeend', defaultContent)
-              console.log('parsedHTML', parsedContent)
+              $('noscript').replaceWith(function() {
+                  return this.textContent || this.innerText;
+              })
             }
           })
         },function(response) {
           // Fallback to noscript content
+          var parser = new DOMParser()
           document.querySelectorAll('.inner noscript').forEach(function (noscriptEle) {
-            var noscriptContent = noscriptEle.innerHTML
-            noscriptEle.parentElement.insertAdjacentHTML('beforeend', noscriptContent)
+            var noscriptContent = parser.parseFromString(noscriptEle.innerHTML, "text/html")
+            var parentEle = noscriptEle.parentElement
+            noscriptContent.body.childNodes.forEach(function(nodeEl) {
+              parentEle.appendChild(nodeEl)
+            })
           })
           console.log('Error: ' + response.result.error.message);
           });
