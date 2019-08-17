@@ -258,7 +258,8 @@
               sectionContents = ''
             } else {
               var defaultContent = sectionEle.querySelector('noscript').innerHTML
-              var parsedContent = parser.parseFromString(defaultContent, 'text/xml')
+              var parsedContent = parser.parseFromString(defaultContent, 'text/html')
+              console.log('debug parsed content,', parsedContent)
               sectionEle.insertAdjacentHTML('beforeend', parsedContent)
             }
           })
