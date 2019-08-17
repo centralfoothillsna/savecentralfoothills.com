@@ -265,8 +265,8 @@
         },function(response) {
           // Fallback to noscript content
           document.querySelectorAll('.inner noscript').forEach(function (noscriptEle) {
-            var noscriptContent = noscriptEle.innerHTML
-            noscriptEle.parentElement.insertAdjacentHTML('beforeend', noscriptContent)
+            var noscriptContent = parser.parseFromString(noscriptEle.innerHTML, "text/html")
+            noscriptEle.parentElement.appendChild(noscriptContent.body.innerHTML)
           })
           console.log('Error: ' + response.result.error.message);
           });
