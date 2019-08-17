@@ -257,10 +257,9 @@
               sectionEle.insertAdjacentHTML('beforeend', sectionContents)
               sectionContents = ''
             } else {
-              var defaultContent = sectionEle.querySelector('noscript').innerHTML
-              var parsedContent = parser.parseFromString(defaultContent, 'text/html')
-              console.log('debug parsed content,', parsedContent)
-              sectionEle.insertAdjacentHTML('beforeend', parsedContent)
+              $('noscript').replaceWith(function() {
+                  return this.textContent || this.innerText;
+              })
             }
           })
         },function(response) {
