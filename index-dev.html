@@ -266,7 +266,10 @@
           var parser = new DOMParser()
           document.querySelectorAll('.inner noscript').forEach(function (noscriptEle) {
             var noscriptContent = parser.parseFromString(noscriptEle.innerHTML, "text/html")
-            noscriptEle.parentElement.appendChild(noscriptContent.body.innerHTML)
+            var parentEle = noscriptEle.parentElement
+            noscriptContent.body.childNodes.forEach(function(nodeEl) {
+              parentEle.appendChild(nodeEl)
+            })
           })
           console.log('Error: ' + response.result.error.message);
           });
