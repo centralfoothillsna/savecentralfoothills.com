@@ -7081,9 +7081,9 @@ body.is-preload .items.onload-fade-in > * > .inner {
 #wrapper.divided > .invert:first-child {
   box-shadow: none !important;
 }
-.big-red-petition-button,
-.big-red-petition-button:hover,
-.big-red-petition-button:visited {
+.big-green-donation-button,
+.big-green-donation-button:hover,
+.big-green-donation-button:visited {
   padding-left: 16px;
   padding-right: 16px;
   font-size: 1rem;
@@ -7094,7 +7094,7 @@ body.is-preload .items.onload-fade-in > * > .inner {
   text-align: center;
   text-decoration: none;
   color: #fff;
-  background-color: #ec2c22;
+  background-color: #19cca3;
   width: 15em;
   font-family: Change Calibre,"Helvetica Neue",Helvetica,Arial,Tahoma,sans-serif !important;
   border-radius: 5px;
